@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/works/{workId}/comments")
 @RestController
-class CommentController(
-    private val commentService: CommentService
-) {
+class CommentController{
     @GetMapping
     fun getCommentList(@PathVariable workId: Long): ResponseEntity<List<CommentResponse>> {
         TODO()
-        /*return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(commentService.getAllCommentList(workId))*/
     }
 
     @PutMapping("/{commentId}")
@@ -30,9 +25,6 @@ class CommentController(
         @RequestBody updateCommentRequest: UpdateCommentRequest
     ): ResponseEntity<CommentResponse> {
         TODO()
-        /*return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(commentService.updateComment(workId, commentId, updateCommentRequest))*/
     }
 
     @PostMapping
@@ -41,10 +33,6 @@ class CommentController(
         @RequestBody createCommentRequest: CreateCommentRequest
     ): ResponseEntity<CommentResponse> {
         TODO()
-        /*return ResponseEntity
-            .status(HttpStatus.CREATED)
-
-            .body(commentService.createComment(workId , createCommentRequest))*/
     }
 
 
@@ -54,18 +42,7 @@ class CommentController(
         @PathVariable commentId: Long
     ): ResponseEntity<Unit> {
         TODO()
-        /*commentService.deleteComment(workId, commentId)
-        return ResponseEntity
-            .status(HttpStatus.NO_CONTENT)
-            .build()*/
-    }
-
-    @ExceptionHandler(CommentNotFoundException::class)
-    fun handleCommentNotFoundException(e: CommentNotFoundException): ResponseEntity<ErrorResponse> {
-        TODO()
-        /*return ResponseEntity
-            .status(HttpStatus.NOT_FOUND)
-            .body(ErrorResponse(message = e.message))*/
 
     }
+
 }

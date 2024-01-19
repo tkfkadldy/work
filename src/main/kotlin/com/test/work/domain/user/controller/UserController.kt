@@ -1,3 +1,4 @@
+/*
 package com.test.work.domain.user.controller
 
 import com.test.work.domain.user.dto.*
@@ -13,9 +14,6 @@ class UserController(
     @GetMapping("/users/{userId}")
     fun getUserProfile(@PathVariable userId: Long): ResponseEntity<UserResponse> {
         TODO()
-        /*return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(UserService.getUserProfileById(userId))*/
     }
 
     @PostMapping("/signup")
@@ -25,9 +23,7 @@ class UserController(
 
     @PostMapping("/login")
     fun signIn(@RequestBody loginRequest: LoginRequest): ResponseEntity<LoginResponse> {
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(userService.userLogin(loginRequest))
+        TODO()
     }
 
     @PostMapping("/logout")
@@ -42,4 +38,4 @@ class UserController(
     ): ResponseEntity<UserResponse> {
         TODO()
     }
-}
+}*/

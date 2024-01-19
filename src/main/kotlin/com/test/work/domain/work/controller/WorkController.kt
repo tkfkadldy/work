@@ -12,55 +12,36 @@ import org.springframework.http.ResponseEntity as ResponseEntity
 
 @RequestMapping("/works")
 @RestController
-class WorkController (
-    private val workService: WorkService
-){
+class WorkController{
 
     //생성
     @PostMapping
     fun createWork(@RequestBody createWorkRequest: CreateWorkRequest) : ResponseEntity<WorkResponse> {
-        return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(workService.createWork(createWorkRequest))
+        TODO()
     }
 
     //목록단건조회
     @GetMapping("/{workId}")
     fun getWork(@PathVariable workId: Long) : ResponseEntity<WorkResponse> {
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(workService.getWorkById(workId))
+        TODO()
     }
 
     //목록조회
     @GetMapping()
     fun getWorkList(): ResponseEntity<List<WorkResponse>> {
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(workService.getAllWorkList())
+        TODO()
     }
 
     //수정
     @PutMapping("/{workId}")
     fun updateWork(@PathVariable workId: Long, @RequestBody updateWorkRequest: UpdateWorkRequest) : ResponseEntity<WorkResponse> {
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(workService.updateWork(workId, updateWorkRequest))
+        TODO()
     }
 
     //삭제
     @DeleteMapping("/{workId}")
     fun deleteWork(@PathVariable workId: Long) : ResponseEntity<Unit> {
-        workService.deleteWork(workId)
-        return ResponseEntity
-            .status(HttpStatus.NO_CONTENT)
-            .build()
+        TODO()
     }
 
-    @ExceptionHandler(WorkNotFoundException::class)
-    fun handleWorkNotFoundException(e: WorkNotFoundException)
-            : ResponseEntity<ErrorResponse> {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body(ErrorResponse(e.message))
-    }
 }
