@@ -20,44 +20,21 @@ class CommentServiceImpl (
     private val userRepository: UserRepository
 ): CommentService {
     override fun getAllCommentList(workId: Long): List<CommentResponse> {
-        val work = workRepository.findByIdOrNull(workId) ?: throw CommentNotFoundException("Work", workId)
-        return work.comment.map { it.toResponse() }
+        TODO()
     }
 
     @Transactional
     override fun createComment(workId: Long, request: CreateCommentRequest): CommentResponse {
         TODO()
-        /*val work = workRepository.findByIdOrNull(workId) ?: throw CommentNotFoundException("Work", workId)
-        val user = userRepository.findByIdOrNull(request.userId) ?: throw CommentNotFoundException("User", request.userId)
-        val comment = Comment(
-            comment = request.comment,
-            work = work,
-            user = user
-        )
-        work.createComment(comment)
-        workRepository.save(work)
-        return comment.toResponse()*/
     }
 
     @Transactional
     override fun updateComment(workId: Long, commentId: Long, request: UpdateCommentRequest): CommentResponse {
         TODO()
-        /*val comment = commentRepository.findByWorkIdAndId(workId, commentId)
-            ?: throw CommentNotFoundException("Comment", commentId)
-
-        val (comment) = request
-        comment.comment = comment
-        return commentRepository.save(comment).toResponse()*/
     }
 
     @Transactional
     override fun deleteComment(workId: Long, commentId: Long) {
         TODO()
-        /*val work = workRepository.findByIdOrNull(workId) ?: throw CommentNotFoundException("Work", workId)
-        val comment = commentRepository.findByIdOrNull(commentId)
-            ?: throw CommentNotFoundException("Comment", commentId)
-
-        work.deleteComment(comment)
-        workRepository.save(work)*/
-    }
+        }
 }

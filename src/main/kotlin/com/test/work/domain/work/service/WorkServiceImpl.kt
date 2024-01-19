@@ -16,41 +16,26 @@ class WorkServiceImpl(
     private val workRepository: WorkRepository,
 ) :WorkService {
     override fun getAllWorkList(): List<WorkResponse> {
-        return workRepository.findAll().map { it.toResponse() }
+        TODO()
     }
 
     override fun getWorkById(workId: Long): WorkResponse {
-        val work = workRepository.findByIdOrNull(workId) ?: throw WorkNotFoundException("Work", workId)
-        return work.toResponse()
+        TODO()
     }
 
     @Transactional
     override fun createWork(request: CreateWorkRequest): WorkResponse {
-        return workRepository.save(
-            Work(
-                title = request.title,
-                content = request.content,
-                name = request.name
-            )
-        ).toResponse()
+        TODO()
     }
 
     @Transactional
     override fun updateWork(workId: Long, request: UpdateWorkRequest): WorkResponse {
-        val work = workRepository.findByIdOrNull(workId) ?: throw WorkNotFoundException("Work", workId)
-        val (title, content,name) = request
-
-        work.title = title
-        work.content = content
-        work.name = name
-
-        return workRepository.save(work).toResponse()
+        TODO()
     }
 
     @Transactional
     override fun deleteWork(workId: Long) {
-        val work = workRepository.findByIdOrNull(workId) ?: throw WorkNotFoundException("Work", workId)
-        workRepository.delete(work)
+        TODO()
     }
 
 }

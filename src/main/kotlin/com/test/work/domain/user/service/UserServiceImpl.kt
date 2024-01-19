@@ -15,8 +15,6 @@ class UserServiceImpl(
 
     override fun getUserProfileById(userId: Long): UserResponse {
         TODO()
-        /*val user = userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException("User", userId)
-        return user.toResponse()*/
     }
 
     override fun signUp(request: SignUpRequest): UserResponse {
@@ -30,29 +28,17 @@ class UserServiceImpl(
     override fun userLogin(request: LoginRequest): LoginResponse {
         TODO()
     }
-/*val user = userRepository.findByEmail(request.email) ?: throw ModelNotFoundException("User", null)
-
-if (user.roleme != request.role || !passwordEncoder.matches(request.password, user.password)) {
-   throw InvalidCredentialException()
-}
-
-return LoginResponse(
-   accesToken = jwtPlugin.generateAccesToken(
-       subject = user.user_id.toString(),
-       email = user.email,
-       role = user.role.name
-   )
-)*/
 
 
-override fun userLoginOut(request: LoginRequest): LoginResponse {
-// TODO: 로그아웃
-TODO("Not yet implemented")
-}
 
-override fun updateUserProfile(userId: Long, updateUserProfileRequest: UpdateUserProfileRequest): UserResponse {
-// TODO: 만약 userId에 해당하는 User가 없다면 throw ModelNotFoundException
-// TODO: DB에서 userId에 해당하는 User를 가져와서 updateUserProfileRequest로 업데이트 후 DB에 저장, 결과를 UserResponse로 변환 후 반환
-TODO("Not yet implemented")
-}
+    override fun userLoginOut(request: LoginRequest): LoginResponse {
+    // TODO: 로그아웃
+    TODO("Not yet implemented")
+    }
+
+    override fun updateUserProfile(userId: Long, updateUserProfileRequest: UpdateUserProfileRequest): UserResponse {
+    // TODO: 만약 userId에 해당하는 User가 없다면 throw ModelNotFoundException
+    // TODO: DB에서 userId에 해당하는 User를 가져와서 updateUserProfileRequest로 업데이트 후 DB에 저장, 결과를 UserResponse로 변환 후 반환
+    TODO("Not yet implemented")
+    }
 }
