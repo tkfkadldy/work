@@ -10,7 +10,5 @@ interface UserService {
 
     fun userLogin(request: LoginRequest): LoginResponse
 
-    fun userLoginOut(request: LoginRequest): LoginResponse
-
     fun updateUserProfile(userId: Long, updateUserProfileRequest: UpdateUserProfileRequest): UserResponse
 }

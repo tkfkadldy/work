@@ -1,9 +1,7 @@
-/*
 package com.test.work.domain.user.controller
 
 import com.test.work.domain.user.dto.*
 import com.test.work.domain.user.service.UserService
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -26,16 +24,10 @@ class UserController(
         TODO()
     }
 
-    @PostMapping("/logout")
-    fun signOut(@RequestBody loginRequest: LoginRequest): ResponseEntity<LoginResponse> {
-       TODO()
-    }
-
-
     @PutMapping("/users/{userId}/profile")
     fun updateUserProfile(@PathVariable userId: Long,
                           @RequestBody updateUserProfileRequest: UpdateUserProfileRequest
     ): ResponseEntity<UserResponse> {
         TODO()
     }
-}*/
+}
