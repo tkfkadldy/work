@@ -11,7 +11,6 @@ class Comment (
     @Column(name = "comment", nullable = false)
     var comment: String,
 
-
     //댓글이 속한 게시물을 나타내며, `Post` 엔티티와 다대일 관계
     @ManyToOne
     @JoinColumn(name = "workid")
@@ -27,6 +26,7 @@ class Comment (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
+
 }
 
 fun Comment.toResponse(): CommentResponse {
