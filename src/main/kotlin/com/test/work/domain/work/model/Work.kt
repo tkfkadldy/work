@@ -1,6 +1,5 @@
 package com.test.work.domain.work.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.test.work.domain.comment.model.Comment
 import com.test.work.domain.user.model.User
 import com.test.work.domain.work.dto.WorkResponse
@@ -12,28 +11,31 @@ import java.time.LocalDateTime
 @Table(name="work")
 class Work(
 
-    @Column(name="title")
+    @Column(name = "title")
     var title: String,
 
-    @Column(name="content")
+    @Column(name = "content")
     var content: String,
 
-    @Column(name="name")
-    var name: String,
+    @Column(name = "name")
+    var name : String,
 
-    @Column (name="createdAt")
+    @Column(name = "comment")
+    var comment: String,
+
+    @Column(name = "createdAt")
     var createdAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name="updateAt")
+    @Column(name = "updateAt")
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    var comments: MutableList<Comment> = mutableListOf(),
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
-    @JsonIgnore
+    @JoinColumn(name = "user_id")
     var user: User,
 
-    @OneToMany(mappedBy = "comment", cascade = [CascadeType.ALL], orphanRemoval=true)
-    var comment: MutableList<Comment> = mutableListOf()
 
 ) {
 
@@ -41,6 +43,9 @@ class Work(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
+    fun deleteComment(comment: Comment) {
+        comments.remove(comment)
+    }
 }
 
 fun Work.toResponse(): WorkResponse {
@@ -50,6 +55,4 @@ fun Work.toResponse(): WorkResponse {
         content = content,
         name = name
     )
-
-
 }
