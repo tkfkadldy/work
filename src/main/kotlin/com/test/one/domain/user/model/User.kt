@@ -30,10 +30,6 @@ class User(
         name = userUpdateRequest.name ?: name
         email = userUpdateRequest.email ?: email
     }
-
-/*    fun deleteUser() {
-        isDeleted = false
-    }*/
 }
 /*
 fun User.toResponse(): UserResponse {

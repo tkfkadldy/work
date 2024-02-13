@@ -29,7 +29,7 @@ class SecurityConfig(
                 ).permitAll()
                     .anyRequest().authenticated()
             }
-            ///\.addFilterBefore(jwtAuthenticationToken, UsernamePasswordAuthenticationFilter::class.java)
+            //.addFilterBefore(jwtAuthenticationToken, UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }
 }
