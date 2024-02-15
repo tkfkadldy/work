@@ -14,22 +14,10 @@ import org.springframework.web.filter.OncePerRequestFilter
 @Component
 class JwtAuthenticationFilter(
     private val jwtPlugin: JwtPlugin
-): OncePerRequestFilter() {
+) : OncePerRequestFilter() {
 
-    companion object{
-        private val BEARER_PATTERN = Regex("^Bearer(.+?)$") //정규식
-    }
-
-    fun getBearerToken(authorization : String) : String? {
-        if (authorization == null)
-            return null
-
-        return try{
-            val matchResult = BEARER_PATTERN.find(authorization)
-            matchResult?.groupValues?.get(1)
-        } catch (e:Exception){
-            null
-        }
+    companion object {
+        private val BEARER_PATTERN = Regex("^Bearer (.+?)$")
     }
 
     override fun doFilterInternal(
@@ -37,8 +25,9 @@ class JwtAuthenticationFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val jwt = parseBearerToken(request)
-        jwt?.apply {
+        val jwt = request.getBearerToken()
+
+        if (jwt != null) {
             jwtPlugin.validateToken(jwt)
                 .onSuccess {
                     val userId = it.payload.subject.toLong()
@@ -48,22 +37,24 @@ class JwtAuthenticationFilter(
                     val principal = UserPrincipal(
                         id = userId,
                         email = email,
-                        role = setOf(role)
+                        roles = setOf(role)
                     )
+                    // Authentication 구현체 생성
                     val authentication = JwtAuthenticationToken(
                         principal = principal,
-                        details = WebAuthenticationDetailsSource().buildDetails(request)
+                        // request로 부터 요청 상세정보 생성
+                        details =  WebAuthenticationDetailsSource().buildDetails(request)
                     )
+                    // SecurityContext에 authentication 객체 저장
                     SecurityContextHolder.getContext().authentication = authentication
                 }
         }
+
         filterChain.doFilter(request, response)
     }
 
-    private fun parseBearerToken(request: HttpServletRequest) = request.getHeader(HttpHeaders.AUTHORIZATION)
-        .takeIf { it?.startsWith("Bearer ", true) ?: false }?.substring(7)
-    private fun parseUserSpecification(token: String?) =(
-            token?.takeIf { it.length >= 10 }
-                ?.let{jwtPlugin.validateToken(token)}
-            )
+    private fun HttpServletRequest.getBearerToken(): String? {
+        val headerValue = this.getHeader(HttpHeaders.AUTHORIZATION) ?: return null
+        return BEARER_PATTERN.find(headerValue)?.groupValues?.get(1)
+    }
 }
