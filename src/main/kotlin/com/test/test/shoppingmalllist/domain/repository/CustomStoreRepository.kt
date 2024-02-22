@@ -1,12 +1,12 @@
 package com.test.test.shoppingmalllist.domain.repository
 
+import com.test.test.shoppingmalllist.domain.dto.StoreResponse
 import com.test.test.shoppingmalllist.domain.model.Store
-import com.test.test.shoppingmalllist.domain.model.StoreState
 
 interface CustomStoreRepository {
-    fun searchStoreListByKeyword(keyword : String) :List<Store>
+    fun searchStoreByName(name : String) : MutableList<String>?
 
-    fun searchAll(): List<Store>
+    fun searchScore(score: String): MutableList<Store>?
 
-    fun search(name: String): Store?
+    fun search(): Store?
 }

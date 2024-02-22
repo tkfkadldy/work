@@ -62,6 +62,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     kapt("com.querydsl:querydsl-apt:$queryDslVersion:jakarta")
 
+    runtimeOnly("org.postgresql:postgresql")
+
 //    implementation("org.springframework.data:spring-data-envers")
 //    runtimeOnly("com.mysql:mysql-connector-j")
 //    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
@@ -70,7 +72,6 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    runtimeOnly("com.mysql:mysql-connector-j")
     //testImplementation("org.springframework.security:spring-security-test")
     //testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     //testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")

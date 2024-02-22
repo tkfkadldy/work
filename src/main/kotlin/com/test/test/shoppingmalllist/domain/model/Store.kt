@@ -2,35 +2,30 @@
 
 import com.test.test.shoppingmalllist.domain.dto.StoreResponse
 import jakarta.persistence.*
-import java.time.LocalDateTime
 
 @Entity
-@Table(name = "stores")
+@Table(name = "store")
 class Store(
-    @Column(name = "name")
-    val name: String, // 상호명
+    @Column(name = "상호")
+    val name: String, // 상호
 
-    @Column(name = "url")
-    val url: String, // 도메인
+    @Column(name = "도메인명")
+    val url: String, // 도메인명
 
-    @Column(name = "phone")
-    val phone: String?, // 대표 번호
+    @Column(name = "전화번호")
+    val phone: String?, // 전화번호
 
-    @Column(name = "email")
-    val email: String, // 대표 이메일
+    @Column(name = "운영자이메일")
+    val email: String, // 운영자이메일
 
-    @Column(name = "score")
-    val score : Int, // 점수
+    @Column(name = "전체평가")
+    val score : String, // 전체평가
 
-    @Column(name = "monitoring_date")
+    @Column(name = "모니터링날짜")
     val monitoringDate: String, // 모니터링 날짜
 
-    @Column(name = "keyword")
-    val keyword : String, // 키워드
-
-    @Column(name = "store_state")
-    @Enumerated(EnumType.STRING)
-    var state : StoreState, // 상태
+    @Column(name = "업소상태")
+    var state : String, // 상태
 
 ) {
     @Id
@@ -38,11 +33,14 @@ class Store(
     val id: Long?= null
 }
 
+
 fun Store.toResponse(): StoreResponse {
     return StoreResponse(
         id = id !!,
-        score = score,
-        state = state,
-        monitoringDate = monitoringDate
+        name= name,
+        score= score,
+        state= state,
+        monitoringDate= monitoringDate
     )
 }
+

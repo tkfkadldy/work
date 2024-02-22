@@ -1,6 +1,7 @@
 package com.test.test.shoppingmalllist.domain.controller
 
 import com.test.test.shoppingmalllist.domain.dto.StoreResponse
+import com.test.test.shoppingmalllist.domain.model.Store
 import com.test.test.shoppingmalllist.domain.service.StoreService
 import org.springdoc.core.converters.models.Pageable
 import org.springframework.http.HttpStatus
@@ -52,10 +53,26 @@ class StoreController(
         return reviewService.getReviews(pageNo, criteria)
     }*/
 
-    @GetMapping("/search")
-    fun searchStoreList(@RequestParam(value = "keyword") keyword : Long) :ResponseEntity<List<StoreResponse>>{
+    @GetMapping("/searchList")
+    fun searchStoreList(
+        @RequestParam(value = "name") name : String
+    ) :ResponseEntity<MutableList<String>?>{
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(storeService.searchStoreList(keyword))
+            .body(storeService.searchStoreByName(name))
+    }
+
+    @GetMapping("/searchScore")
+    fun searchScore(@RequestParam(value = "score") score:String): ResponseEntity<MutableList<Store>?>{
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(storeService.searchScore(score))
+    }
+
+    @GetMapping("/search")
+    fun search(): ResponseEntity<Store?>{
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(storeService.search())
     }
 }

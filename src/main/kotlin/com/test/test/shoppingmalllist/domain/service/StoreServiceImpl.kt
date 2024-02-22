@@ -3,7 +3,6 @@ package com.test.test.shoppingmalllist.domain.service
 import com.test.test.shoppingmalllist.domain.dto.StoreResponse
 import com.test.test.shoppingmalllist.domain.model.Store
 import com.test.test.shoppingmalllist.domain.model.toResponse
-import com.test.test.shoppingmalllist.domain.repository.StoreRepositoryImpl
 import com.test.test.shoppingmalllist.domain.repository.StoreRepository
 import org.springdoc.core.converters.models.Pageable
 import org.springframework.stereotype.Service
@@ -34,15 +33,15 @@ class StoreServiceImpl(
     }
 
 
-    override fun searchStoreList(keyword: Long): List<StoreResponse> {
-        return storeRepository.searchStoreListByKeyword(keyword.toString()).map { it.toResponse() }
+    override fun searchStoreByName(name: String): MutableList<String>? {
+        return storeRepository.searchStoreByName(name)
     }
 
-    override fun searchAll(): List<Store> {
-        return storeRepository.searchAll()
+    override fun  searchScore(score: String): MutableList<Store>? {
+        return storeRepository.searchScore(score)
     }
 
-    override fun search(name: String): Store? {
-        return storeRepository.search(name)
+    override fun search(): Store?{
+        return storeRepository.search()
     }
 }

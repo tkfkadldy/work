@@ -16,9 +16,9 @@ interface StoreService {
 
     fun collectStoresByAPI() : String
 
-    fun searchStoreList(keyword: Long): List<StoreResponse>
+    fun searchStoreByName(name: String): MutableList<String>?
 
-    fun searchAll(): List<Store>
+    fun searchScore(score: String): MutableList<Store>?
 
-    fun search(name: String): Store?
+    fun search(): Store?
 }
